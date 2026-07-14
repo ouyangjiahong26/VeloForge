@@ -1,0 +1,41 @@
+# Rust / Cargo
+/target
+**/target
+**/*.rs.bk
+Cargo.lock.bak
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.maturin/
+.python-version
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Qt
+*.user
+*.userosscache
+
+# Build outputs
+*.pyd
+*.so
+*.dll
+*.pdb
+
+# Data and logs
+*.log
+data/logs/
+
+# Project-specific (vendored reference materials — not part of source)
+references/

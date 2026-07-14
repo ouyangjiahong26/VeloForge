@@ -1,0 +1,17 @@
+[package]
+name = "veloforge-py"
+description = "VeloForge PyO3 adapter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[lib]
+name = "_core"
+crate-type = ["cdylib"]
+
+[dependencies]
+veloforge-core = { path = "../veloforge-core" }
+pyo3 = { version = "0.22", features = ["abi3-py312"] }
+thiserror = { workspace = true }

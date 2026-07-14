@@ -1,0 +1,17 @@
+[package]
+name = "veloforge-core"
+description = "VeloForge protocol and motion processing core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+nalgebra = { workspace = true }
+thiserror = { workspace = true }
+log = { workspace = true }
+bitflags = "2"
+
+[dev-dependencies]
+proptest = "1"

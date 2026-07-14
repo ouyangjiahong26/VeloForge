@@ -1,0 +1,61 @@
+[build-system]
+requires = ["maturin>=1.9,<2"]
+build-backend = "maturin"
+
+[project]
+name = "veloforge"
+version = "0.1.0"
+description = "VeloForge: cross-platform desktop client for WitMotion BWT901BLE IMU"
+requires-python = ">=3.12,<3.15"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "VeloForge contributors" }]
+keywords = ["bluetooth", "imu", "barbell", "velocity", "training"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    "PySide6~=6.11",
+    "pyqtgraph>=0.14,<1",
+    "numpy>=2,<3",
+    "platformdirs>=4,<5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-qt>=4",
+    "hypothesis>=6",
+    "ruff>=0.6",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+veloforge = "veloforge.app:main"
+
+[tool.maturin]
+manifest-path = "crates/veloforge-py/Cargo.toml"
+python-source = "python"
+module-name = "veloforge._core"
+bindings = "pyo3"
+features = ["pyo3/abi3-py312"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests/python"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "N", "ASYNC", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true

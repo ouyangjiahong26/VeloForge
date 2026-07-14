@@ -1,0 +1,21 @@
+[package]
+name = "veloforge-device"
+description = "VeloForge cross-platform BLE device driver"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+veloforge-core = { path = "../veloforge-core" }
+btleplug = { workspace = true }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time"] }
+thiserror = { workspace = true }
+uuid = { version = "1", features = ["v4"] }
+log = { workspace = true }
+# Pin the exact windows-interface version that windows-core 0.61 needs.
+# Without this direct dependency, the patch directive fails to match and
+# Cargo cannot resolve the windows_interface crate at link time.
+windows-interface = "=0.59.1"
+windows-implement = "=0.60.0"

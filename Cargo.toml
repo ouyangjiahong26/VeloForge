@@ -1,0 +1,46 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/veloforge-core",
+    "crates/veloforge-device",
+    "crates/veloforge-py",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+license = "MIT"
+repository = "https://example.invalid/veloforge"
+
+[workspace.dependencies]
+nalgebra = { version = "0.33", default-features = false, features = ["std"] }
+thiserror = "1"
+serde = { version = "1", features = ["derive"] }
+log = "0.4"
+btleplug = { version = "0.11", default-features = false }
+windows = "0.62"
+windows-core = "0.62"
+windows-implement = "0.60.2"
+windows-interface = "0.59.3"
+windows-result = "0.4"
+windows-strings = "0.5"
+
+[patch.crates-io]
+# Force the windows-* toolchain family so btleplug and our crate agree
+# on the same windows-core/windows-implement versions. The 0.61 family
+# requires windows-interface 0.59.1; we pin it to the matching tag.
+windows-core = { git = "https://github.com/microsoft/windows-rs", tag = "0.61.0" }
+windows = { git = "https://github.com/microsoft/windows-rs", tag = "0.61.0" }
+windows-implement = { git = "https://github.com/microsoft/windows-rs", tag = "0.60.0" }
+windows-interface = { git = "https://github.com/microsoft/windows-rs", tag = "0.59.0" }
+windows-result = { git = "https://github.com/microsoft/windows-rs", tag = "0.59.0" }
+windows-strings = { git = "https://github.com/microsoft/windows-rs", tag = "0.59.0" }
+
+[profile.dev]
+opt-level = 0
+debug = 1
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
