@@ -39,10 +39,7 @@ pub fn gravity_in_body(q: UnitQuaternion<f64>, gravity_mps2: f64) -> Vector3<f64
 }
 
 /// Convert body-frame linear acceleration to navigation frame.
-pub fn body_to_nav(
-    q: UnitQuaternion<f64>,
-    body_accel: Vector3<f64>,
-) -> Vector3<f64> {
+pub fn body_to_nav(q: UnitQuaternion<f64>, body_accel: Vector3<f64>) -> Vector3<f64> {
     q * body_accel
 }
 

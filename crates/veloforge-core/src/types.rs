@@ -40,11 +40,7 @@ pub struct ImuSample {
 
 impl ImuSample {
     /// Construct a sample where only raw measurements are known.
-    pub fn from_raw(
-        monotonic_ns: i64,
-        accel_g: [f64; 3],
-        gyro_dps: [f64; 3],
-    ) -> Self {
+    pub fn from_raw(monotonic_ns: i64, accel_g: [f64; 3], gyro_dps: [f64; 3]) -> Self {
         Self {
             monotonic_ns,
             accel_g,

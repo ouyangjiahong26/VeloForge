@@ -168,7 +168,11 @@ mod tests {
         let out = dec.feed(&frame);
         assert_eq!(out.len(), 1);
         let f = &out[0];
-        assert!((f.accel_g[0] - 8.0).abs() < 1e-6, "accel x = {}", f.accel_g[0]);
+        assert!(
+            (f.accel_g[0] - 8.0).abs() < 1e-6,
+            "accel x = {}",
+            f.accel_g[0]
+        );
         assert!((f.accel_g[1] - (-8.0)).abs() < 1e-6);
         assert!(f.accel_g[2].abs() < 1e-6);
         assert!((f.gyro_dps[0] - 250.0).abs() < 1e-3);
