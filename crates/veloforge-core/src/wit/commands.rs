@@ -33,9 +33,13 @@ impl WitCommand {
             WitCommand::SetReturnRate(rate) => [0xff, 0xaa, 0x03, rate as u8, 0x00],
             WitCommand::SetBandwidth(band) => [0xff, 0xaa, 0x1f, band as u8, 0x00],
             WitCommand::ReadRegister(reg) => [0xff, 0xaa, 0x27, reg, 0x00],
-            WitCommand::WriteRegister { reg, value } => {
-                [0xff, 0xaa, reg, (value & 0xff) as u8, ((value >> 8) & 0xff) as u8]
-            }
+            WitCommand::WriteRegister { reg, value } => [
+                0xff,
+                0xaa,
+                reg,
+                (value & 0xff) as u8,
+                ((value >> 8) & 0xff) as u8,
+            ],
         }
     }
 }

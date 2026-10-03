@@ -225,7 +225,11 @@ impl MotionPipeline {
         let out = ProcessedSample {
             monotonic_ns: now,
             linear_accel_nav_mps2: [linear_nav.x, linear_nav.y, linear_nav.z],
-            velocity_nav_mps: [self.velocity_nav.x, self.velocity_nav.y, self.velocity_nav.z],
+            velocity_nav_mps: [
+                self.velocity_nav.x,
+                self.velocity_nav.y,
+                self.velocity_nav.z,
+            ],
             bar_velocity_mps: bar_velocity,
             stationary: is_static,
             phase: new_phase,
@@ -272,11 +276,19 @@ impl MotionPipeline {
     /// using the most recent zero-velocity observation. This is a
     /// convenience hook and not yet wired to public state.
     pub fn velocity(&self) -> [f64; 3] {
-        [self.velocity_nav.x, self.velocity_nav.y, self.velocity_nav.z]
+        [
+            self.velocity_nav.x,
+            self.velocity_nav.y,
+            self.velocity_nav.z,
+        ]
     }
 
     pub fn position(&self) -> [f64; 3] {
-        [self.position_nav.x, self.position_nav.y, self.position_nav.z]
+        [
+            self.position_nav.x,
+            self.position_nav.y,
+            self.position_nav.z,
+        ]
     }
 
     /// Take the most recently completed repetition summary, if any.
@@ -402,7 +414,11 @@ mod tests {
             monotonic_ns: 0,
             // The device thinks it sees 1g on its body z axis, but rotated
             // 45 deg around z so gravity appears at sqrt(2)/2 on body x and z.
-            accel_g: [9.81_f64.sqrt() / 9.7915 / 2.0, 0.0, 9.81_f64.sqrt() / 9.7915 / 2.0],
+            accel_g: [
+                9.81_f64.sqrt() / 9.7915 / 2.0,
+                0.0,
+                9.81_f64.sqrt() / 9.7915 / 2.0,
+            ],
             gyro_dps: [0.0; 3],
             euler_deg: None,
             quaternion_wxyz: Some([w, 0.0, 0.0, z]),

@@ -1,15 +1,11 @@
 //! Integration tests for the protocol decoder using hand-built frames.
 
-use veloforge_core::WitStreamDecoder;
 use veloforge_core::wit::commands::WitCommand;
+use veloforge_core::WitStreamDecoder;
 
 const FRAME_LEN: usize = 20;
 
-fn active_frame(
-    accel: [i16; 3],
-    gyro: [i16; 3],
-    euler: [i16; 3],
-) -> [u8; FRAME_LEN] {
+fn active_frame(accel: [i16; 3], gyro: [i16; 3], euler: [i16; 3]) -> [u8; FRAME_LEN] {
     let mut buf = [0u8; FRAME_LEN];
     buf[0] = 0x55;
     buf[1] = 0x61;

@@ -201,11 +201,7 @@ fn encode_command(name: &str) -> PyResult<[u8; 5]> {
         "return_rate_50" => WitCommand::SetReturnRate(ReturnRate::Hz50),
         "bandwidth_256" => WitCommand::SetBandwidth(Bandwidth::Hz256),
         "bandwidth_188" => WitCommand::SetBandwidth(Bandwidth::Hz188),
-        other => {
-            return Err(PyValueError::new_err(format!(
-                "unknown command: {other}"
-            )))
-        }
+        other => return Err(PyValueError::new_err(format!("unknown command: {other}"))),
     };
     Ok(cmd.encode())
 }
